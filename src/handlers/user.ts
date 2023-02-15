@@ -26,5 +26,8 @@ export const signIn = async (req, res) => {
     if (!user) return res.status(404).json({ message: 'User not found' })
     
     const valid = await comparePassword(password, user.password)
-    if(!valid) return res.status(401).json({message: 'Invalid credentials'})
+    if (!valid) return res.status(401).json({ message: 'Invalid credentials' })
+    
+    const token = createJWT(user)
+    res.json({token})
 }

@@ -10,7 +10,6 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 app.get('/', (req, res) => {
     console.log("heya express");
     res.status(200)
@@ -19,7 +18,7 @@ app.get('/', (req, res) => {
 
 app.use('/api', protect, router)
 
-app.use('/user', createNewUser)
-app.post('signin', signIn)
+app.post('/user', createNewUser)
+app.post('/signin', signIn)
 
 export default app;

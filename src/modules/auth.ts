@@ -28,7 +28,7 @@ export const protect = (req, res, next) => {
     const [, token] = bearer.split(' ') // Bearer Xtoken
     if (!token) {
         res.status(401)
-        res.json({message: 'Unauthorized'})
+        res.json({message: 'Unauthorizeddd no token'})
         return
     }
 

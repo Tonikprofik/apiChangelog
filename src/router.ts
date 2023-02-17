@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { body, validationResult } from 'express-validator'
+import { body, oneOf, validationResult } from 'express-validator'
 import { handleInputErrors } from "./modules/middleware";
 
 const router = Router();
@@ -24,17 +24,32 @@ router.delete("/product/:id", () => { });
 // update
 router.get("/update", () => { });
 router.get("/update/:id", () => { });
-router.put("/update/:id", body('name'), body('updatesAt'),handleInputErrors, (req, res) => {
+router.put("/update/:id",
+    body('title').optional(),
+    body('body').optional(), body('status').isIn(['IN_PROGRESS',
+    'SHIPPED', 'DEPRECATED']).optional(),
+    body('version').optional(), handleInputErrors, (req, res) => {
     
  });
-router.post("/update", () => { });
+router.post("/update",
+    body('title').exists().isString(),
+    body('body').exists().isString(),
+    body('productId').exists().isString(),
+ () => { });
 router.delete("/update/:id", () => { });
 
 // update point
 router.get("/update-point", () => { });
-router.get("/update-point/:id", body('name'), body('updatedAt'), handleInputErrors, (req, res) => { });
-router.put("/update-point/:id", () => { });
-router.post("/update-point", () => { });
+router.get("/update-point/:id",
+    
+     handleInputErrors, (req, res) => { });
+router.put("/update-point/:id",
+    body('name').optional().isString(),
+    body('description').optional().isString(), () => { });
+router.post("/update-point",
+    body('name').isString(),
+    body('description').isString(),
+    body('updateId').exists().isString(), () => { });
 router.delete("/update-point/:id", () => { });
 
 export default router;

@@ -14,7 +14,7 @@ export const getProducts = async (req, res) => {
 };
 
 //get one by id
-export const getProduct = async (req, res) => {
+export const getOneProduct = async (req, res) => {
   const product = await prisma.product.findFirst({
     where: {
       id: req.params.id,

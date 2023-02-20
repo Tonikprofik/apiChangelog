@@ -54,6 +54,7 @@ router.post(
   body("title").exists().isString(),
   body("body").exists().isString(),
   body("productId").exists().isString(),
+
   () => {}
 );
 router.delete("/update/:id", () => {});

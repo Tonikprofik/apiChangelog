@@ -6,7 +6,13 @@ import {
   getOneProduct,
   getProducts,
 } from "./handlers/product";
-import { deleteUpdate, getOneUpdate, getUpdates, updateUpdate } from "./handlers/update";
+import {
+  createUpdate,
+  deleteUpdate,
+  getOneUpdate,
+  getUpdates,
+  updateUpdate,
+} from "./handlers/update";
 import { handleInputErrors } from "./modules/middleware";
 
 const router = Router();
@@ -55,7 +61,7 @@ router.post(
   body("title").exists().isString(),
   body("body").exists().isString(),
   body("productId").exists().isString(),
-  createProduct
+  createUpdate
 );
 router.delete("/update/:id", deleteUpdate);
 
